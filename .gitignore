@@ -1,0 +1,5 @@
+/clarke-*.gem
+/Gemfile.lock
+.rvmrc
+Gemfile.lock
+tags
