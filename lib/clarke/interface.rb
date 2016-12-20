@@ -6,7 +6,7 @@ module Clarke
       events.map do |event|
         Clarke::RequestsBuilder::build_action_requests(event).map do |action_request|
           responses = Clarke::ActionController::process(action_request)
-          ui_module.send(responses)
+          ui_module.deliver(responses)
         end
       end.flatten
     end
