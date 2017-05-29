@@ -1,7 +1,7 @@
 module Clarke
   class Response
     attr_accessor :recipient, :title, :text, :image, :audio, :video, :file,
-    :buttons, :suggested_replies, :options
+    :buttons, :suggested_replies, :http_response, :options
 
     def initialize (recipient, options = {})
       @recipient = recipient
