@@ -16,7 +16,7 @@ class TestClarkeInterface < Test::Unit::TestCase
         [TextMessage.new(request_body + ' event 1'), TextMessage.new(request_body + ' event 2')]
       end
 
-      def send(responses)
+      def deliver(responses)
         responses.map(&:text)
       end
     end
