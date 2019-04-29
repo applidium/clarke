@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Clarke
   class ActionRequest
     attr_reader :action, :event, :options

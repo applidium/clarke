@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'json'
 
 module Clarke
   class Response
     attr_accessor :recipient, :title, :text, :image, :audio, :video, :file,
-    :buttons, :suggested_replies, :options
+                  :buttons, :suggested_replies, :options
 
     def initialize(recipient, options = {})
       @recipient = recipient
@@ -23,12 +25,10 @@ module Clarke
       new(data[:recipient], data[:options])
     end
 
-    def to_json
+    def to_json(*_args)
       JSON.dump(
-        {
-          recipient: recipient,
-          options: options
-        }
+        recipient: recipient,
+        options: options
       )
     end
   end

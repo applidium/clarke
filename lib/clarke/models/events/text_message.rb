@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Clarke
   module Events
     module TextMessage
@@ -9,7 +11,6 @@ module Clarke
         end
         super(m, *args, &block)
       end
-
     end
   end
 end
