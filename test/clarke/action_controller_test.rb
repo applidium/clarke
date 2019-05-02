@@ -1,7 +1,8 @@
-require "./test/test_helper"
+# frozen_string_literal: true
+
+require './test/test_helper'
 
 class TestClarkeActionController < Test::Unit::TestCase
-
   teardown do
     Clarke::ActionController.clear_actions!
   end
@@ -21,7 +22,7 @@ class TestClarkeActionController < Test::Unit::TestCase
 
   test 'raise missing_action' do
     assert_raise NoMethodError do
-      Clarke::ActionController.process({action: 'no_action'})
+      Clarke::ActionController.process(action: 'no_action')
     end
   end
 
@@ -41,8 +42,7 @@ class TestClarkeActionController < Test::Unit::TestCase
         options[:response]
       end
     end
-    action_request = Clarke::ActionRequest.new('hello', nil, {response: 'hi!'})
+    action_request = Clarke::ActionRequest.new('hello', nil, response: 'hi!')
     assert_equal ['hi!'], Clarke::ActionController.process(action_request)
   end
-
 end

@@ -1,4 +1,6 @@
-require "./test/test_helper"
+# frozen_string_literal: true
+
+require './test/test_helper'
 
 class TestClarkeInterface < Test::Unit::TestCase
   module Clarke::Fake
@@ -23,9 +25,12 @@ class TestClarkeInterface < Test::Unit::TestCase
   end
 
   module Clarke::RequestsBuilder::TextEcho
-    def self.valid?(_) true end
+    def self.valid?(_)
+      true
+    end
+
     def self.build_requests(event)
-      [Clarke::ActionRequest.new('text_echo', event, {text: event.text + ' AR 1'}), Clarke::ActionRequest.new('text_echo', event, {text: event.text + ' AR 2'})]
+      [Clarke::ActionRequest.new('text_echo', event, text: event.text + ' AR 1'), Clarke::ActionRequest.new('text_echo', event, text: event.text + ' AR 2')]
     end
   end
 
@@ -37,10 +42,10 @@ class TestClarkeInterface < Test::Unit::TestCase
     Clarke::RequestsBuilder.config([Clarke::RequestsBuilder::TextEcho])
     module Clarke::ActionController
       action 'text_echo' do
-        Clarke::Response.new(options[:event].sender, {text: options[:text]})
+        Clarke::Response.new(options[:event].sender, text: options[:text])
       end
     end
 
-    assert_equal ['input event 1 AR 1', 'input event 1 AR 2', 'input event 2 AR 1', 'input event 2 AR 2'], Clarke.process(Clarke::Fake, "input")
+    assert_equal ['input event 1 AR 1', 'input event 1 AR 2', 'input event 2 AR 1', 'input event 2 AR 2'], Clarke.process(Clarke::Fake, 'input')
   end
 end
